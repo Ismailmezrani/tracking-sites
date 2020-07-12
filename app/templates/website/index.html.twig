@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List des sites{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <div class="mb-3">
+            Connecté avec {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+    <h1>Vos Sites</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>nom de site</th>
+                <th>lien</th>
+                <th>date</th>
+                <th>code HTTP</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for website in websites %}
+            <tr class="{{ website.status == '200' ? 'success' : 'warning' }}">
+                <td>{{ website.name }}</td>
+                    <td><a href="{{ absolute_url(website.url) }}" target="_blank">{{ website.url }}</a></td>
+                <td>{{ website.updateAt ? website.updateAt|date('Y-m-d H:i:s') : website.createdAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ website.status }}</td>
+                <td>
+                    <a class="btn btn-primary" role="button" href="{{ path('website_show', {'id': website.id}) }}">show</a>
+                    <a class="btn btn-info" role="button" href="{{ path('website_edit', {'id': website.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Liste vide</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success" role="button" href="{{ path('website_new') }}">Ajouter un site</a>
+{% endblock %}

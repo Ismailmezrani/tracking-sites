@@ -1,0 +1,8 @@
+<h1>Votre site n'est plus en ligne</h1>
+
+<p>
+    le site {{ website.name }} n'est plus en ligne avec un http code {{ website.status }} : <br><br>
+    <a href="{{ absolute_url(website.url) }}">le site</a>.
+    <a class="btn btn-info" role="button" href="{{ url('website_edit', {'id': website.id}) }}">cliquer ici pour le modifier</a>
+
+</p>

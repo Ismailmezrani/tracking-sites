@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Website{% endblock %}
+
+{% block body %}
+    <h1>Ajout site</h1>
+
+    {{ include('website/_form.html.twig') }}
+
+    <a class="btn btn-primary" role="button" href="{{ path('website_index') }}">menu principal</a>
+{% endblock %}

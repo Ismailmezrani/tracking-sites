@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page modification de site{% endblock %}
+
+{% block body %}
+    <h1>Modification site</h1>
+
+    {{ include('website/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-info" role="button" href="{{ path('website_index') }}">Menu principal</a>
+
+    {{ include('website/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Website{% endblock %}
+
+{% block body %}
+    <h1>site {{ website.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Lien</th>
+                <td>{{ website.url }}</td>
+            </tr>
+            <tr>
+                <th>Code HTTP</th>
+                <td>{{ website.status }}</td>
+            </tr>
+            <tr>
+                <th>Dernière mise à jour</th>
+                <td>{{ website.updateAt ? website.updateAt|date('Y-m-d H:i:s') : website.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('website_index') }}">menu principal</a>
+
+    <a href="{{ path('website_edit', {'id': website.id}) }}">modification</a>
+
+    {{ include('website/_delete_form.html.twig') }}
+{% endblock %}
